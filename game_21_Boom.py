@@ -46,16 +46,15 @@ for _ in range(1):
 
             #one last chance to win
             while total_player_1 < 21:
-                Hit = int(input("would you like to Hit one last time?" '\n' "if so, press 1, if not, press 0: "'\n'))
+                Hit = int(input("would you like to Hit one last time?🎰" '\n' "if so, press 1, if not, press 0: "'\n'))
                 if Hit == 1:
                     last = random.choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'])
-                    total_2 = last
                     if last == "J" or last == "Q" or last == "K":
                         last = 10
                     elif last == "A":
                         last = 1
                     print("you choose to continue"'\n'"that is your last card: ", last, suit)
-                    last_ = total_2 + total_player_1
+                    last_ = last + total_player_1
                     player_1_final = last_
                     print("your new total is: "'\n', last_)
                     break
@@ -65,7 +64,7 @@ for _ in range(1):
 
         #checking if it is a winner or a losser
             if total_player_1 == 21:
-                print ("player 1, you win!🤩"'\n')
+                print ("player 1, you win!🤯"'\n')
 
             elif total_player_1 > 21:
                 print ("player 1, you lost!😔"'\n')
@@ -73,6 +72,7 @@ for _ in range(1):
     #setting player number 2
 total_1: int = 0 #reset the variable and for the first calculation of the player's total.
 total_2: int = 0 # reset a variable
+total_player_2: int = 0 #memory cell and indicator for winning or losing
 player_2_final: int = 0 #memory cell for the sum of the player card
 
 for _ in range(1):
@@ -112,20 +112,19 @@ for _ in range(1):
             print ("you choose to continue, that is your add on card: ",add_on, suit)
             total_player_2 = total_1 + add_on
             player_2_final = total_player_2
-            print ("your new total is: ", total_player_1)
+            print ("your new total is: ", total_player_2,'\n')
 
             #one last chance to win
             while total_player_2 < 21:
-                Hit = int(input("would you like to Hit one last time?" '\n' "if so, press 1, if not, press 0: "))
+                Hit = int(input("would you like to Hit one last time?🎰" '\n' "if so, press 1, if not, press 0: "))
                 if Hit == 1:
                     last = random.choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'])
-                    total_2 = last
                     if last == "J" or last == "Q" or last == "K":
                         last = 10
                     elif last == "A":
                         last = 1
                     print("you choose to continue, that is your last card: ", last, suit)
-                    last_ = total_2 + total_player_1
+                    last_ = last + total_player_2
                     player_2_final = last_
                     print("your new total is: ", last_)
                     break
@@ -135,15 +134,21 @@ for _ in range(1):
 
         #checking if it is a winner or a losser
             if total_player_2 == 21:
-                print ("player 2, you win!🤩"'\n')
+                print ("player 2, you win!🤯"'\n')
 
             elif total_player_2 > 21:
                 print ("player 2, you lost!😔"'\n')
 
-
-if player_1_final > player_2_final:
+#if player one wins and under 21 or equal, he wins
+if player_2_final > 21 and player_1_final <= 21:
     print ("player 1 wins!🤩")
-if player_2_final > player_1_final:
+elif player_1_final > 21 and player_2_final <= 21:
     print ("player 2 wins!🤩")
-if player_1_final == player_2_final:
+elif player_1_final <= 21 and player_1_final > player_2_final:
+        print ("player 1 wins!🤩")
+elif player_2_final <= 21 and player_2_final > player_1_final:
+        print ("player 2 wins!🤩")
+elif player_1_final == player_2_final and player_1_final <= 21 and player_2_final <= 21:
     print ("draw!😮")
+elif player_1_final > 21 and player_2_final > 21:
+    print ("Both lost!💀")
